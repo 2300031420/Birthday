@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Internet, who has a birthday today? 💖",
+  title: "For_Aisha 💖",
   description: "A cute pink search engine to find today's most important birthday.",
 };
 
