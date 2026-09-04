@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Custom Pink Birthday Theme Palette */
+  --color-pastel-petal: #FFCAE4;
+  --color-electric-rose: #F10291;
+  --color-dark-raspberry: #89235B;
+  --color-rich-mahogany: #250209;
+  --color-diamond-cut: #E8E9EE;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animations */
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+@keyframes float-drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(-5deg);
+  }
+  33% {
+    transform: translateY(-25px) translateX(10px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-15px) rotate(-2deg);
+  }
+}
+
+@keyframes sway-pendant {
+  0%, 100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes blink-cursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes shine-reflection {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes sparkle-blink {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes heart-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Custom Animation Utility Classes */
+.animate-float-1 {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-drift 9s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-gentle 8s ease-in-out infinite 2s;
+}
+
+.animate-sway {
+  animation: sway-pendant 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.animate-sparkle {
+  animation: sparkle-blink 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: heart-pulse 3s ease-in-out infinite;
+}
+
+/* Typing Cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background-color: #F10291;
+  margin-left: 4px;
+  animation: blink-cursor 0.8s infinite;
+  vertical-align: middle;
+}
+
+/* Custom Heart Cursor Classes */
+.cute-cursor-area {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23FFCAE4'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 16 16, auto !important;
+}
+
+.sparkle-trail-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 14px;
+  height: 14px;
+  color: #FFCAE4;
+  animation: sparkle-blink 0.8s forwards;
+}
+
+/* 3D Stack Text Transitions */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  height: 350px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.stacked-text-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease;
+  will-change: transform, opacity, filter;
+  padding: 0 20px;
+}
+
+.text-state-upcoming {
+  transform: translateY(120px) translateZ(-200px) scale(0.6);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.text-state-current {
+  transform: translateY(0px) translateZ(0px) scale(1.05);
+  opacity: 1;
+  filter: blur(0px);
+  pointer-events: auto;
+  text-shadow: 0 0 15px rgba(255, 202, 228, 0.7), 0 0 30px rgba(241, 2, 145, 0.4);
+}
+
+.text-state-past-1 {
+  transform: translateY(-80px) translateZ(-150px) scale(0.85);
+  opacity: 0.45;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.text-state-past-2 {
+  transform: translateY(-150px) translateZ(-300px) scale(0.7);
+  opacity: 0.18;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.text-state-past-3 {
+  transform: translateY(-210px) translateZ(-450px) scale(0.55);
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none;
+}
